@@ -12,7 +12,7 @@ using GLPK
 CRUDEOIL = ["Bacha","Maya","Arab","Mars","Bonny","Krik","SAGD","Mining","CA"]
 nCRUDEOIL = length(CRUDEOIL)
 
-AvailableCrude = [50000, 60000, 20000, 60000, 4000, 20000, 75000, 60000, 130000]
+AvailableCrude = [1000, 2000, 20000, 60000, 4000, 20000, 75000, 60000, 130000]
 #const 
 PurchaseCost = [13.86, 14.87, 15.46, 18.36, 17.43, 16.3, 13.47, 13.47, 13.18]
 RefineCost = [2.31, 2.00, 1.99, 1.96, 1.91, 1.90, 2.36, 2.36, 2.30]
@@ -69,3 +69,20 @@ optimize!(m)
 #solution printiing
 print(objective_value(m))
 print(value.(PurchaseCrude_))
+
+#Solution for 2.2
+Profit2 = 209148.4347826088
+DV2 = [50000.0, 9037.267080745361, 20000.0, 0.0, 0.0, 0.0, 0.0, 55962.73291925463, 0.0]
+
+#Solution for 2.3
+#Drop to 1000GJ
+Profit3 = 82307.7269319606
+DelProf = Profit2-Profit3
+print(DelProf)
+DV3 = [1000.0, 1000.0, 20000.0, 28595.195670824272, 0.0, 20000.0, 0.0, 60000.0, 4404.8043291757185]
+#increase maya to 2000GJ
+Profit4 = 83861.3236784794
+EconomicVal = Profit4 - Profit3 - PurchaseCost[2]
+print("economic value is ")
+print(EconomicVal)
+DV4 = [1000.0, 2000.0, 20000.0, 27874.678281528424, 0.0, 20000.0, 0.0, 60000.0, 4125.321718471567]
